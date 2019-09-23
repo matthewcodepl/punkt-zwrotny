@@ -32,7 +32,7 @@ const ListMenu = styled.ul`
     }
 `;
 const MenuItem = styled.li`
-    margin-left:10px;
+    margin-left:25px;
     @media(max-width:800px) {
         margin:0px;
         padding:15px 0px;
