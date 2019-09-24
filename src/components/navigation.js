@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from "gatsby"
 import styled from 'styled-components'
 import logo from '../images/logo.png'
+import './layout.css';
+import posed from 'react-pose'
 const Nav = styled.div`
     display:flex;
     justify-content:space-around;
@@ -15,9 +17,19 @@ const Nav = styled.div`
     }
 `;
 
-const ListMenu = styled.ul`
-    list-style:none;
+
+
+
+const ListMenu = posed.ul({
+    open: {maxHeight:'0px', overflow: 'hidden'},
+    closed: {maxHeight:'300px',}
+});
+
+
+const StyledListMenu = styled(ListMenu)`
+   list-style:none;
     display:flex;
+    transition:.4s ease-in-out;
     @media(max-width:800px) {
         position:absolute;
         top:100%;
@@ -27,10 +39,10 @@ const ListMenu = styled.ul`
         transform:translateX(-50%);
         width:100%;
         text-align:center;
-        overflow:hidden;
-        max-height:0px;
+
     }
 `;
+
 const MenuItem = styled.li`
     margin-left:25px;
     @media(max-width:800px) {
@@ -56,6 +68,7 @@ const Hamburger = styled.button`
   background-color: transparent;
   border: 0;
   margin: 0;
+  cursor:pointer;
   @media(min-width:800px) {
       display:none;
   }
@@ -94,38 +107,45 @@ const HamburgerInner = styled.span`
       top:10px;
   }
 `;
-const navActive = styled.ul`
-    max-height:300px;
-
-`;
 
 
-const handleClick = () => {
-    // const bar = document.querySelector('#hamburger');
-    const nav = document.querySelector('#nav');
-        nav.classList.toggle('navActive')
-// console.log(123)
-}
 
-// bar.addEventListener('click', handleClick)
 
 
 export default class navigation extends Component {
+    state = {
+        isMenuOpen: false,
+    }
 
     render() {
+        const handleClick = () => {
+            this.setState({
+                isMenuOpen: !this.state.isMenuOpen
+            })
+            console.log(this.state.isMenuOpen)
 
+        }
+
+        const {isMenuOpen} = this.state 
         return (
             <>
                 
         <Nav id="nav">
-                <img src={logo} height="70px"></img>
-            <Hamburger id="hamburger" >
+                <img src={logo} height="70px" alt="Logo"></img>
+            <Hamburger
+            isOpen ={this.state.active}
+            onClick={handleClick}
+            >
                 <Hamburgerbox>
                     <HamburgerInner>
                     </HamburgerInner>
                 </Hamburgerbox>
             </Hamburger>
-            <ListMenu >
+            <StyledListMenu 
+            id="#nav"
+            pose={isMenuOpen ? 'open' : 'closed'}
+
+            >
                     <MenuItem>
                         <Linkstyled to="/">Strona główna </Linkstyled>
                     </MenuItem>
@@ -141,7 +161,7 @@ export default class navigation extends Component {
                         <Linkstyled to="/kontakt">Kontakt </Linkstyled>
                     </MenuItem>
 
-            </ListMenu>
+            </StyledListMenu>
         </Nav>
             </>
         )
