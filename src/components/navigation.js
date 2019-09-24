@@ -21,8 +21,8 @@ const Nav = styled.div`
 
 
 const ListMenu = posed.ul({
-    open: {maxHeight:'0px', overflow: 'hidden'},
-    closed: {maxHeight:'300px',}
+    open: {maxHeight:'300px' },
+    closed: {maxHeight:'0px',overflow: 'hidden'}
 });
 
 
@@ -168,3 +168,4 @@ export default class navigation extends Component {
     }
 }
 
+    
