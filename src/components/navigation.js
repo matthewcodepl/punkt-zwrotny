@@ -8,29 +8,23 @@ import posed from 'react-pose'
 
 const Nav = styled.div`
     display:flex;
+    justify-content:space-around;
     align-items:center;
     padding: 10px;
     background: rgb(41,41,41);
     color:#fff;
+    position:relative;
     @media(max-width:800px) {
         justify-content:space-between;
         padding:5px;
     }
-    ${({isDesktop}) => !isDesktop && `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    justify-content: space-around;
-    overflow-y: hidden;
-  `}
 `;
 
 
 
 
 const ListMenu = posed.ul({
-    open: {x:'0%',staggerChildren: 200  },
+    open: {x:'0%' },
     closed: {x:'-100%'}
 });
 
@@ -50,9 +44,9 @@ const StyledListMenu = styled(ListMenu)`
         text-align:center;
 
     }
-  /* ${({isDesktop}) => !isDesktop && `
+  ${({isDesktop}) => !isDesktop && `
         justify-content: space-between;
-  `} */
+  `}
 `;
 
 const MenuItem = styled.li`
