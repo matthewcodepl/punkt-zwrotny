@@ -14,19 +14,21 @@ body {
 }
 
 .NavAnimation-enter {
-  opacity: 0;
+  max-height: 0px;
   transform: scale(0.6);
 }
 .NavAnimation-enter-active {
-  opacity: 1;
+  max-height: 300px;
   transform: translateX(0);
-  transition: opacity 350ms, transform 350ms;
+  transition: max-height 350ms, transform 350ms;
+
 }
 .NavAnimation-exit {
-  opacity: 1;
+  max-height: 300px;
+
 }
 .NavAnimation-exit-active {
-  opacity: 0;
+  max-height: 0px;
   transform: scale(0.5);
-  transition: opacity 350ms, transform 350ms;
+  transition: max-height 350ms, transform 350ms;
 }
