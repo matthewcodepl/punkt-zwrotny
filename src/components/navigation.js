@@ -6,36 +6,47 @@ import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import './layout.css';
 const Menu = styled.nav`
-    width:100%;
-    background:rgb(41,41,41);
     display:flex;
-    justify-content:space-between;
-    padding:15px;
+    justify-content:space-around;
     align-items:center;
-    position:fixed;
-    top:0;
-    left:0;
+    background:rgb(41,41,41);
+    padding:15px 0;
+    position:relative;
+    @media(max-width:800px) {
+        justify-content:space-between;
+        padding:15px 10px;
+    }
 `;
 
 const Navigation = styled.ul`
-    position:absolute;
-    top:100%;
-    left:0;
-    margin:0;
+    display:flex;
     list-style:none;
-    text-align:center;
-    width:100%;
-    background:black;
+    @media(max-width:800px) {
+        position:absolute;
+        top:100%;   
+        left:0%;
+        background:black;
+        flex-direction:column;
+        width:100%;
+        text-align:center;
+        overflow-x:hidden;
+    }
 `;
 
 const NavigationLink = styled.li`
-    padding:20px 0;
-
+    margin-left:25px;
+    @media(max-width:800px) {
+        padding:15px 0;
+    }
 `;
 
 const StyledLink =styled(Link)`
-    color:#fff;
+    color: #fff;
     text-decoration:none;
+    transition:.3s ease-in-out;
+    &:hover {
+        opacity:.6;
+    }
 `;
 
 const ToggleBurger = styled.button`
