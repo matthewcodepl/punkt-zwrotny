@@ -5,6 +5,7 @@ module.exports = {
     author: `Mateusz Mamica`,
   },
   plugins: [
+    
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -13,6 +14,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     `gatsby-plugin-styled-components`,
 
     `gatsby-transformer-sharp`,

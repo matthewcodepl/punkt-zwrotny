@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import logo from '../images/logo.png'
 import './layout.css';
 import posed from 'react-pose'
+
+
 const Nav = styled.div`
     display:flex;
     justify-content:space-around;
@@ -14,6 +16,7 @@ const Nav = styled.div`
     position:relative;
     @media(max-width:800px) {
         justify-content:space-between;
+        padding:5px;
     }
 `;
 
@@ -24,6 +27,7 @@ const ListMenu = posed.ul({
     open: {maxHeight:'300px' },
     closed: {maxHeight:'0px',overflow: 'hidden'}
 });
+
 
 
 const StyledListMenu = styled(ListMenu)`
@@ -41,6 +45,9 @@ const StyledListMenu = styled(ListMenu)`
         text-align:center;
 
     }
+  ${({isDesktop}) => !isDesktop && `
+        justify-content: space-between;
+  `}
 `;
 
 const MenuItem = styled.li`
@@ -73,6 +80,7 @@ const Hamburger = styled.button`
       display:none;
   }
 `;
+
 
 const Hamburgerbox = styled.span`
   width: 35px;
@@ -115,18 +123,38 @@ const HamburgerInner = styled.span`
 export default class navigation extends Component {
     state = {
         isMenuOpen: false,
+        isDesktop: false
     }
-
+    componentDidMount() {
+        this.updateWindowDimensions();
+      }
+    
+    updateWindowDimensions = () => {
+        if (window.innerWidth >=800) {
+          this.setState({ isDesktop: true, isMenuOpen: true });
+        } else {
+          this.setState({ isDesktop: false, isMenuOpen: false });
+        }
+      }
+    
+      componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+        // window.removeEventListener('scroll', this.updateScrollPosition);
+      }
+    
     render() {
+   
+    
+        const {isMenuOpen, isDesktop} = this.state 
         const handleClick = () => {
             this.setState({
                 isMenuOpen: !this.state.isMenuOpen
             })
-            console.log(this.state.isMenuOpen)
-
+            // console.log(this.state.isMenuOpen)
+    
         }
+    
 
-        const {isMenuOpen} = this.state 
         return (
             <>
                 
@@ -144,7 +172,7 @@ export default class navigation extends Component {
             <StyledListMenu 
             id="#nav"
             pose={isMenuOpen ? 'open' : 'closed'}
-
+            isDesktop={isDesktop}
             >
                     <MenuItem>
                         <Linkstyled to="/">Strona główna </Linkstyled>
