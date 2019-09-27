@@ -11,7 +11,10 @@ const Menu = styled.nav`
     align-items:center;
     background:rgb(41,41,41);
     padding:15px 0;
-    position:relative;
+    position:fixed;
+    top:0%;
+    left:0%;
+    width:100%;
     @media(max-width:800px) {
         justify-content:space-between;
         padding:15px 10px;
