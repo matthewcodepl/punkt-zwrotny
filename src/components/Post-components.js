@@ -10,6 +10,11 @@ const PostWrapper = styled.div`
     -webkit-box-shadow: 0 3px 2px #777;
 	-moz-box-shadow: 0 3px 2px #777;
 	box-shadow: 0 3px 2px #777;
+    @media(max-width:800px) {
+        margin:0px;
+        box-shadow:0px 0px 0px;
+        transform:translateY(0%);
+    }
 `;
 
 
